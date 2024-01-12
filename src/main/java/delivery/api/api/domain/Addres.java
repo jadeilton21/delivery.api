@@ -1,5 +1,9 @@
 package delivery.api.api.domain;
 
+import com.google.gson.GsonBuilder;
+import com.mapbox.services.commons.geojson.custom.PositionSerializer;
+import com.mapbox.services.commons.models.Position;
+
 import java.io.Serializable;
 
 public class Addres implements Serializable {
@@ -16,4 +20,10 @@ public class Addres implements Serializable {
     }
 
 
+
+    public String toJson(){
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.registerTypeAdapter(Position.class,new PositionSerializer());
+        return gsonBuilder.create().toJson(this);
+    }
 }
