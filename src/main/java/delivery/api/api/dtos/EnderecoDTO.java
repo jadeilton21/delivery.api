@@ -1,5 +1,10 @@
 package delivery.api.api.dtos;
 
+import com.google.gson.GsonBuilder;
+import com.mapbox.services.commons.geojson.custom.PositionDeserializer;
+import com.mapbox.services.commons.geojson.custom.PositionSerializer;
+import com.mongodb.client.model.geojson.Position;
+
 public class EnderecoDTO {
 
     private String type;
@@ -28,5 +33,16 @@ public class EnderecoDTO {
 
     public void setCordinates(double[] cordinates) {
         this.cordinates = cordinates;
+    }
+
+    public static EnderecoDTO fromJson(String json) {
+        GsonBuilder gson = new GsonBuilder();
+        gson.registerTypeAdapter(Position.class, new PositionDeserializer());
+        return gson.create().fromJson(json, EnderecoDTO.class);
+    }
+    public String toJson(){
+        GsonBuilder gson = new GsonBuilder();
+        gson.registerTypeAdapter(Position.class,new PositionSerializer());
+        return gson.create().toJson(this);
     }
 }
