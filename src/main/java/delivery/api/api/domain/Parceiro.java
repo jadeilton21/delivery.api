@@ -1,5 +1,6 @@
 package delivery.api.api.domain;
 
+import com.mapbox.geojson.Point;
 import org.springframework.data.annotation.Id;
 
 import javax.annotation.processing.Generated;
@@ -49,5 +50,13 @@ public class Parceiro implements Serializable {
 
     public CoverageArea getCoverageArea() {
         return coverageArea;
+    }
+    public boolean atendeRegiao(Endereco addres){
+        return this.coverageArea.estaContido(addres);
+    }
+
+    public double disstanciaDe(Point pontoReferencia){
+        Point point = Point.fromJson(this.getEndereco().toJson());
+        return this.getCoverageArea().distanciaEmCentimetros(point,pontoReferencia);
     }
 }
