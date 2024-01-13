@@ -1,11 +1,19 @@
 package delivery.api.api.domain;
 
 import com.mapbox.geojson.Point;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.annotation.processing.Generated;
 import java.io.Serializable;
 
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@Document(collation = "parceiros")
 public class Parceiro implements Serializable {
 
 
