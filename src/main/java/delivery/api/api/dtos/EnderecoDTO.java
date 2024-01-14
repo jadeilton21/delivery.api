@@ -45,4 +45,6 @@ public class EnderecoDTO {
         gson.registerTypeAdapter(Position.class,new PositionSerializer());
         return gson.create().toJson(this);
     }
+
+
 }
