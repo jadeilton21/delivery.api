@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.Comparator;
 import java.util.Optional;
 
+import static delivery.api.api.dtos.mapper.EnderecoMapper.toDTO;
+
 public class ParceiroServiceImpl implements ParceiroService {
     @Autowired
     private final ParceiroRepository parceiroRepository;
