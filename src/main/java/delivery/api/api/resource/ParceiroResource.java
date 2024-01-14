@@ -8,6 +8,10 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.net.URI;
+import java.net.URISyntaxException;
+
+import static delivery.api.api.dtos.mapper.EnderecoMapper.toDTO;
+import static delivery.api.api.dtos.mapper.EnderecoMapper.toEntity;
 
 @RestController
 @RequestMapping("/parceiros")
