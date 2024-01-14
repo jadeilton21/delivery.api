@@ -1,6 +1,7 @@
 package delivery.api.api.resource;
 
 import delivery.api.api.dtos.ParceiroDTO;
+import delivery.api.api.service.ParceiroService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
