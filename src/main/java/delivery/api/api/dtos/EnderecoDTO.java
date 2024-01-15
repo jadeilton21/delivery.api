@@ -7,6 +7,8 @@ import com.mongodb.client.model.geojson.Position;
 
 public class EnderecoDTO {
 
+
+    private Long id;
     private String type;
     private double[] cordinates;
 
