@@ -63,7 +63,7 @@ public class Parceiro implements Serializable {
         return this.coverageArea.estaContido(addres);
     }
 
-    public double disstanciaDe(Point pontoReferencia){
+    public double distanciaDe(Point pontoReferencia){
         Point point = Point.fromJson(this.getEndereco().toJson());
         return this.getCoverageArea().distanciaEmCentimetros(point,pontoReferencia);
     }
