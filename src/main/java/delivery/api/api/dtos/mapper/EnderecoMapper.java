@@ -10,6 +10,6 @@ public class EnderecoMapper {
 }
 
     public static EnderecoDTO toDTO(Endereco address) {
-        return new EnderecoDTO(address.getType(), address.getCordinates());
+        return new EnderecoDTO(address.getType(), address.getCoordinates());
     }
 }
