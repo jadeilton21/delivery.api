@@ -3,17 +3,21 @@ package delivery.api.api.service.impl;
 import com.mapbox.geojson.Point;
 import delivery.api.api.domain.Endereco;
 import delivery.api.api.domain.Parceiro;
+import delivery.api.api.dtos.EnderecoDTO;
 import delivery.api.api.dtos.ParceiroDTO;
 import delivery.api.api.exception.DocumentoDuplicadoException;
 import delivery.api.api.repository.ParceiroRepository;
 import delivery.api.api.service.ParceiroService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Comparator;
 import java.util.Optional;
 
 import static delivery.api.api.dtos.mapper.EnderecoMapper.toDTO;
-
+@Service
+@Transactional
 public class ParceiroServiceImpl implements ParceiroService {
     @Autowired
     private final ParceiroRepository parceiroRepository;
@@ -23,11 +27,11 @@ public class ParceiroServiceImpl implements ParceiroService {
     }
 
     @Override
-    public ParceiroDTO cadastrar(Parceiro parceiro) {
-        parceiroRepository.findParceiroByDocument(parceiro.getDocument()).ifPresent(parceiroConsultado -> {
+    public EnderecoDTO cadastrar(Endereco parceiro) {
+        parceiroRepository.findPaceiroByDocument(parceiro.getDocument()).ifPresent(parceiroConsultado -> {
             throw new DocumentoDuplicadoException("");
         });
-        return toDTO(parceiroRepository.save(parceiro));
+        return toDTO(parceiroRepository.save(parceiro).getEndereco());
     }
 
     @Override
