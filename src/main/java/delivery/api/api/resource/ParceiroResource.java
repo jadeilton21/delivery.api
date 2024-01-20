@@ -1,18 +1,17 @@
 package delivery.api.api.resource;
 
-import delivery.api.api.dtos.EnderecoDTO;
-import delivery.api.api.dtos.ParceiroDTO;
+
+import delivery.api.api.dtos.mapper.ParceiroDTO;
 import delivery.api.api.service.ParceiroService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
+
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 
-import static delivery.api.api.dtos.mapper.EnderecoMapper.toDTO;
 import static delivery.api.api.dtos.mapper.EnderecoMapper.toEntity;
 
 @RestController
@@ -24,7 +23,7 @@ public class ParceiroResource {
 
     @PostMapping
     public ResponseEntity cadastrarParceiro(@RequestBody @Valid ParceiroDTO parceiroDTO) throws URISyntaxException {
-        EnderecoDTO parceiroCadastrado = parceiroService.cadastrar(toEntity(parceiroDTO.getEnderecoDTO()));
+        ParceiroDTO parceiroCadastrado = parceiroService.cadastrar(toEntity(parceiroDTO));
         return ResponseEntity.created(new URI(parceiroCadastrado.getId())).build();
     }
 

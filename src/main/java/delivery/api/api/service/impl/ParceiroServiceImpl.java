@@ -16,9 +16,12 @@ import java.util.Comparator;
 import java.util.Optional;
 
 import static delivery.api.api.dtos.mapper.EnderecoMapper.toDTO;
+
+
 @Service
 @Transactional
 public class ParceiroServiceImpl implements ParceiroService {
+
     @Autowired
     private final ParceiroRepository parceiroRepository;
 
@@ -27,12 +30,14 @@ public class ParceiroServiceImpl implements ParceiroService {
     }
 
     @Override
-    public EnderecoDTO cadastrar(Endereco parceiro) {
-        parceiroRepository.findPaceiroByDocument(parceiro.getDocument()).ifPresent(parceiroConsultado -> {
+    public ParceiroDTO cadastrar(Parceiro parceiro) {
+        parceiroRepository.findParceiroByDocument(parceiro.getDocument()).ifPresent(parceiroConsultado -> {
             throw new DocumentoDuplicadoException("");
         });
-        return toDTO(parceiroRepository.save(parceiro).getEndereco());
+        return toDTO(parceiroRepository.save(parceiro));
     }
+
+
 
     @Override
     public ParceiroDTO buscarPorId(String id) {
@@ -57,4 +62,5 @@ public class ParceiroServiceImpl implements ParceiroService {
                 .filter(parceiro -> parceiro.atendeRegiao(addres))
                 .findFirst();
     }
+
 }
